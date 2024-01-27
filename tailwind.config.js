@@ -5,9 +5,12 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily:{
-        body:['Ubuntu']
-      }
+      theme: {
+        fontFamily: {
+          display: ["Caveat", "cursive"],
+        },
+      },
+    
     },
   },
   plugins: [],

@@ -4,7 +4,7 @@ const Cenovnik = () => {
   return (
     <div className='mx-auto justify-center text-center'>
       <div className='text-4xl my-8 py-5'>
-        <h1>Cenovnik</h1>
+        <h1 className='lg:border-b lg:pb-4 border-gray-500 max-w-[1240px] mx-auto'>Cenovnik</h1>
       </div>
         <div className='mx-auto h-[70vh]'>
           <span>U ovom periodu cena punog pansiona iznosi 3500 din, Kontaktirajte nas radi dogovora.</span>

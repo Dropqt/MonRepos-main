@@ -3,7 +3,7 @@ import { NavLink, Nav, NavMenu } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <header className='lg:sticky sticky top-0 z-50 '>
+    <header className='sticky top-0 z-50 '>
       <div className='relative'> {/* Zameni za stil ako ne valja, margine za navbar*/}
       <nav className="  rounded-b-xl flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-black bg-[#64b370ef] shadow-2xl">
         <div className=" lg:mx-10 mx-1 text-lg lg:text-xl"><NavLink to='/'>Mon Repos</NavLink></div>
