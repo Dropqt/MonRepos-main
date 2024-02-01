@@ -13,7 +13,7 @@ import StickyButtons from './components/StickyButtons/StickyButtons';
 
 function App() {
   return (
-    <div className='app-container overflow-clip'>
+    <div className='app-container overflow-clip roboto-medium'>
       <Router>
         <Navbar />
         <Routes>
@@ -23,7 +23,7 @@ function App() {
           <Route path="/cenovnik" element={<Cenovnik />} />
         </Routes>
         <Footer />
-        <StickyButtons /> {/* Include the StickyButtons component */}
+        <StickyButtons />
       </Router>
     </div>
   );

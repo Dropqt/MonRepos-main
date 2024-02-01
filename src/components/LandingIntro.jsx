@@ -5,7 +5,6 @@ import 'slick-carousel/slick/slick-theme.css';
 import Vila1 from '../assets/slikeVile/01.jpg';
 import Vila2 from '../assets/slikeVile/02.jpg';
 import Vila3 from '../assets/slikeVile/03.jpg';
-import './LandingIntro.css'
 
 const LandingIntro = () => {
   const images = [Vila1, Vila2, Vila3];
@@ -17,23 +16,25 @@ const LandingIntro = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true, 
-    autoplaySpeed: 3000,
+    autoplaySpeed: 3500,
   };
 
   return (
-    <div className='w-full py-[3rem] px-4'>
-              <span className=' .alex-brush-regular flex justify-center align-middle text-[3.5em]'>Mon Repos - Mesto vašeg odmora</span>        
-      <div className='w-[100%] lg:w-[55%] bg-white mx-auto  my-7 shadow-2xl rounded-md'>
+    <div className='w-full py-[1rem] px-4 lg:py-[2rem]'>
+      <p className=' flex justify-center align-middle text-center text-5xl lg:text-7xl LogoFont py-7'>Mesto vašeg odmora</p>  
+                  
+      <div className='  bg-white mx-auto  my-7 shadow-2xl rounded-md lg:w-[50%]'>
         <Slider {...settings}>
           {images.map((image, index) => (
               <img
-                className='flex h-[300px] justify-center items-center mx-auto rounded-md lg:h-[500px]'
+                className=' h-[300px]  flex  justify-center items-center mx-auto rounded-md   lg:h-[500px]'
                 src={image}
                 alt={`Slide ${index + 1}`}
               />
           ))}
         </Slider>
       </div>
+       
     </div>
   );
 };
