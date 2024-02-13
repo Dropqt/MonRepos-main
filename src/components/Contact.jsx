@@ -35,7 +35,7 @@ const Contact = () => {
 
 
 
-        <div className=' mt-10 mb-20'>
+        <div className=' mx-5 mt-20 mb-20'>
           <iframe
             className='mx-0 lg:mx-auto my-4 shadow-2xl shadow-green-200 rounded-md lg:w-[1000px] w-[100%]'
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2848639507465!2d21.87014486955873!3d43.64224130103251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47543a4d14cd059f%3A0x53ec847bca4f5f11!2sMonrepos!5e0!3m2!1ssr!2srs!4v1705347358715!5m2!1ssr!2srs"

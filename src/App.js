@@ -13,7 +13,7 @@ import StickyButtons from './components/StickyButtons/StickyButtons';
 
 function App() {
   return (
-    <div className='app-container overflow-clip roboto-medium'>
+    <div className='app-container overflow-clip roboto-medium flex flex-col min-h-screen'>
       <Router>
         <Navbar />
         <Routes>
