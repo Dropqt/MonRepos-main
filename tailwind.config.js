@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       theme: {
         fontFamily: {
-          display: ["Caveat", "cursive"],
+          display: ["Caveat", "cursive",],
         },
       },
     

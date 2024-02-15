@@ -5,43 +5,34 @@ const Cenovnik = () => {
   return (
     <div className='mx-auto justify-center text-center '>
         <div className='text-4xl my-8 py-5'>
-        <h1 className='lg:border-b lg:pb-4 border-gray-500 max-w-[1240px] mx-auto'>Cenovnik</h1>
+        <h1 className=' lg:pb-4 border-gray-500 max-w-[1240px] mx-auto'>Cenovnik</h1>
         </div>
 
 
-        <div className='lg:grid grid-cols-2 lg:text-left '>
-            <div className='  mx-auto lg:ml-52'>
+        <div className=' '>
+            <div className=' mx-5 lg:mx-auto text-justify indent text-lg lg:text-xl font-normal'>
 
-              <span className='my-2 px-3 text-xl lg:text-left text-center'>U ovom periodu cena punog pansiona iznosi 3500 din </span>
-              <p className='my-2 px-3 text-xl lg:text-left text-center '>Kontaktirajte nas radi dogovora.</p>
-              <h2 className='font-bold my-2 px-3 text-2xl text-center '> Popusti za decu</h2>
-              <ul className='my-2 px-3 text-base '>
+              <p className=''><b>U ovom periodu</b> cena punog pansiona iznosi 3500 din.</p>
+              <p className='mb-5'>Kontaktirajte nas radi dogovora.</p>
+              <p className=''><b>Popusti za decu</b></p>
+              <ul className='pl-2'>
                 <li>
-                  do 3 godina ne plaćaju pansion.
+                • Do 3 godina ne plaćaju pansion
                 </li>
-                <li>
-                  3-7 godina u posebnom ležaju plaćaju 50%.
-                </li>
-                <li>7-12 godina u posebnom ležaju plaćaju 70%.</li>
+                <li>• 3-7 godina u posebnom ležaju plaćaju 50%</li>
+                <li className='mb-5'>• 7-12 godina u posebnom ležaju plaćaju 70%</li>
               </ul>
-              <p className='font-bold my-2 px-3 text-2xl text-center '>Dodatne mogućnosti plaćanja</p>
-              <p className=' '></p>
-              <ul className=' my-2 px-3 text-base '>Odloženo plaćanje
-                <li className=''>
-                  Mogućnost plaćanja preko vaučera uz doplatu.
-                </li>
-                <li className=''>
-                  PIO Fond
-                </li>
-                <li className=''>
-                  Čekovi građana
-                </li>
+              <span className=''><b>Dodatne mogućnosti plaćanja</b></span>
+              <ul className='pl-2'>
+                <li>• Odloženo plaćanje</li>
+                <li>• Mogućnost plaćanja preko vaučera uz doplatu.</li>
+                <li>• Pio fond</li>
+                <li>• Čekovi građana</li>
               </ul>
+
               
             </div>
-            <img src={vaucer} alt="Voucher" className=' lg:w-[500px] lg:my-auto  mx-auto md:mx-10 my-10' />
         </div>
-      
 
     </div>
   )

@@ -8,11 +8,11 @@ const StickyButtons = () => {
   const emailAddress = 'danica.blagojevic@gmail.com';
 
   return (
-    <div className="sticky-buttons">
-    <a href={`tel:${phoneNumber}`} className="phone-button">
+    <div className="sticky-buttons ">
+    <a href={`tel:${phoneNumber}`} className="phone-button bg-gray-200/95 rounded-lg py-2 px-2">
       <FaPhone size={30}/>
     </a>
-    <a href={`mailto:${emailAddress}`} className="mail-button">
+    <a href={`mailto:${emailAddress}`} className="mail-button bg-gray-200/95 rounded-lg py-2 px-2">
       <FaEnvelope size={30}/>
     </a>
   </div>
