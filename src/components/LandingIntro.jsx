@@ -27,7 +27,7 @@ const LandingIntro = () => {
         <Slider {...settings}>
           {images.map((image, index) => (
               <img
-                className=' h-[250px]  flex  justify-center items-center mx-auto rounded-md   lg:h-[500px]'
+                className=' h-[250px]  flex  justify-center items-center mx-auto rounded-md   lg:h-[550px]'
                 src={image}
                 alt={`Slide ${index + 1}`}
               />
