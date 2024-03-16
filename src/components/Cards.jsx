@@ -26,7 +26,7 @@ const Cards = () => {
                 <img className='w-50 mx-auto mt-[-3rem] bg-white rounded-t-lg rounded-b-sm' src={CardsPic1} alt="" />
 
                 <div className='text-justify font-medium tracking-tight'>
-                    <p className='py-2 border-b text-justify mt-8 '>Dobrodošli u Mon Repos, gde se tradicija i radoznalost stapaju u jedinstveno iskustvo. Na ovom mestu, naš poznati nobelovac - Ivo Andrić je 1952. godine zadovoljavao svoju radoznalost istražujući netaknute predele prirode Sokobanje. Iskusite atmosferu prošlosti i otkrijte nasleđe koje zrači iz svakog ugla naše vile. Mon Repos - pozivamo vas da istražite tradiciju i zadovoljite svoju radoznalost. </p>
+                    <p className='py-2 border-b text-justify mt-8 '>Dobrodošli u Mon Repos, gde se tradicija i radoznalost stapaju u jedinstveno iskustvo. Na ovom mestu, naš poznati nobelovac - Ivo Andrić je 1942. godine zadovoljavao svoju radoznalost istražujući netaknute predele prirode Sokobanje. Iskusite atmosferu prošlosti i otkrijte nasleđe koje zrači iz svakog ugla naše vile. Mon Repos - pozivamo vas da istražite tradiciju i zadovoljite svoju radoznalost. </p>
                 </div>
                 <div className='row-span-1 mx-auto'>
                     <button className='h-8 bg-green-600  w-40 my-5 text-lg rounded-md text-gray-100 mx-1'>
