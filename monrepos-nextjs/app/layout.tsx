@@ -35,6 +35,13 @@ const ubuntu = Ubuntu({
 export const metadata: Metadata = {
   title: "Mon Repos Sokobanja",
   description: "Villa Mon Repos - Idealno mesto za vaš odmor u Sokobanji",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },
+      { url: '/assets/other/LogoVila.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/assets/other/LogoVilaL.png',
+  },
 };
 
 export default function RootLayout({
@@ -45,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="sr">
       <body
-        className={`${roboto.variable} ${montserrat.variable} ${dancingScript.variable} ${ubuntu.variable} app-container overflow-clip roboto-medium flex flex-col min-h-screen`}
+        className={`${roboto.variable} ${montserrat.variable} ${dancingScript.variable} ${ubuntu.variable} app-container roboto-medium flex flex-col min-h-screen`}
       >
         <Navbar />
         {children}

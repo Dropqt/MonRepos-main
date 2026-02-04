@@ -49,8 +49,8 @@ const Cards = () => {
             className='w-50 mx-auto mt-[-3rem] bg-white rounded-t-lg rounded-b-sm'
             src="/assets/slikeVile/02 edit.jpg"
             alt="Mon Repos exterior"
-            width={400}
-            height={300}
+            width={600}
+            height={400}
           />
 
           <div className='text-justify font-medium '>
