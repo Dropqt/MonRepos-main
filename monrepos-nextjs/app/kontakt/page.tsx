@@ -4,7 +4,8 @@ import PageHeader from "@/components/PageHeader";
 export const metadata = {
   title: "Kontakt",
   description:
-    "Kontaktirajte vilu Mon Repos za rezervacije i informacije - Vrelska 4a, 18230 Sokobanja.",
+    "Kontakt i rezervacije - Vila Mon Repos, Vrelska 4a, Sokobanja. Pozovite za smeštaj sa domaćom hranom i puni pansion.",
+  alternates: { canonical: "/kontakt" },
 };
 
 export default function KontaktPage() {

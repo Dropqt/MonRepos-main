@@ -3,7 +3,9 @@ import PageHeader from "@/components/PageHeader";
 
 export const metadata = {
   title: "Cenovnik",
-  description: "Cene smeštaja i informacije o plaćanju u vili Mon Repos.",
+  description:
+    "Cenovnik vile Mon Repos u Sokobanji - puni pansion sa domaćom hranom, popusti za decu i načini plaćanja.",
+  alternates: { canonical: "/cenovnik" },
 };
 
 function Item({ children }: { children: React.ReactNode }) {

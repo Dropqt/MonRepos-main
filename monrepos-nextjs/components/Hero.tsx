@@ -6,7 +6,8 @@ export default function Hero() {
     <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden text-center">
       <img
         src="/assets/slikeVile/01.jpg"
-        alt="Vila Mon Repos u Sokobanji"
+        alt="Vila Mon Repos - smeštaj sa hranom u Sokobanji"
+        fetchPriority="high"
         className="absolute inset-0 h-full w-full object-cover"
       />
       {/* vignette - placeholder treatment until the reference screenshot */}
@@ -14,6 +15,7 @@ export default function Hero() {
 
       <div className="relative z-10 px-5 py-24">
         <Logo className="mx-auto block h-[clamp(6.5rem,22vw,13rem)] w-auto text-[#fdf8ee] drop-shadow-[0_2px_20px_rgba(20,14,8,0.45)]" />
+        <h1 className="sr-only">Vila Mon Repos - smeštaj sa domaćom hranom u Sokobanji</h1>
         <p className="mt-7 text-[11px] font-bold uppercase tracking-[0.38em] text-[#e7d6b2]">
           Est. 1931 · Sokobanja
         </p>

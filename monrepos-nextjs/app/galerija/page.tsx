@@ -3,7 +3,9 @@ import PageHeader from "@/components/PageHeader";
 
 export const metadata = {
   title: "Galerija",
-  description: "Pogledajte fotografije vile Mon Repos - enterijer, sobe i prostori u Sokobanji.",
+  description:
+    "Galerija vile Mon Repos u Sokobanji - fotografije soba, enterijera i prostora našeg smeštaja sa hranom.",
+  alternates: { canonical: "/galerija" },
 };
 
 export default function GalerijaPage() {
