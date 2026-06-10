@@ -1,82 +1,67 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
-const ContactForm = () => {
+export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [stateMessage, setStateMessage] = useState<string | null>(null);
+  const [ok, setOk] = useState(false);
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.persist();
     e.preventDefault();
     setIsSubmitting(true);
+    const form = e.currentTarget;
 
     emailjs
-      .sendForm(
-        'gmail',
-        'template_w511hpp',
-        e.currentTarget,
-        'gbYozUxtsoCwsPsHo'
-      )
+      .sendForm("gmail", "template_w511hpp", form, "gbYozUxtsoCwsPsHo")
       .then(
-        (result) => {
-          setStateMessage('Message sent!');
+        () => {
+          setOk(true);
+          setStateMessage("Poruka je poslata! Javićemo vam se uskoro.");
           setIsSubmitting(false);
-          setTimeout(() => {
-            setStateMessage(null);
-          }, 5000);
+          form.reset();
+          setTimeout(() => setStateMessage(null), 6000);
         },
-        (error) => {
-          setStateMessage('Something went wrong, please try again later');
+        () => {
+          setOk(false);
+          setStateMessage("Došlo je do greške. Pokušajte ponovo ili nas pozovite.");
           setIsSubmitting(false);
-          setTimeout(() => {
-            setStateMessage(null);
-          }, 5000);
+          setTimeout(() => setStateMessage(null), 6000);
         }
       );
-
-    e.currentTarget.reset();
   };
 
-  return (
-    <div className='my-7 py-3'>
-      <h1 className='text-center text-3xl my-4'>Kontaktirajte nas putem forme</h1>
-      <form
-        className='rounded-lg flex flex-col items-center lg:max-w-[1240px] mx-auto px-4'
-        onSubmit={sendEmail}
-      >
-        <label>Ime i prezime</label>
-        <input
-          className='rounded-lg lg:w-[60%] w-[80%] border-2 px-2 py-1 border-green-700 bg-gray-200'
-          required
-          type="text"
-          name="to_name"
-        />
-        <label>E-Mail</label>
-        <input
-          className='rounded-lg lg:w-[60%] w-[80%] border-2 px-2 py-1 border-green-700 bg-gray-200'
-          required
-          type="email"
-          name="from_name"
-        />
-        <label>Poruka</label>
-        <textarea
-          className='rounded-lg h-[200px] lg:w-[60%] w-[90%] border-2 px-2 border-green-700 bg-gray-200'
-          name="message"
-        />
-        <button className='h-8 bg-green-600 mx-auto w-40 my-5 text-lg rounded-md'>
-          <input
-            className='rounded-lg cursor-pointer'
-            type="submit"
-            value="Pošalji"
-            disabled={isSubmitting}
-          />
-        </button>
-        {stateMessage && <p>{stateMessage}</p>}
-      </form>
-    </div>
-  );
-};
+  const field =
+    "w-full rounded-lg border border-line bg-parchment px-4 py-3 text-espresso outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15";
+  const label = "mb-1.5 block text-[11px] font-bold uppercase tracking-[0.16em] text-cocoa";
 
-export default ContactForm;
+  return (
+    <form onSubmit={sendEmail} className="space-y-4">
+      <div>
+        <label className={label} htmlFor="to_name">
+          Ime i prezime
+        </label>
+        <input id="to_name" name="to_name" type="text" required placeholder="Vaše ime" className={field} />
+      </div>
+      <div>
+        <label className={label} htmlFor="from_name">
+          E-mail
+        </label>
+        <input id="from_name" name="from_name" type="email" required placeholder="ime@email.com" className={field} />
+      </div>
+      <div>
+        <label className={label} htmlFor="message">
+          Poruka
+        </label>
+        <textarea id="message" name="message" placeholder="Želim da rezervišem boravak..." className={`${field} h-40 resize-none`} />
+      </div>
+      <button type="submit" disabled={isSubmitting} className="btn btn-primary w-full justify-center disabled:opacity-60">
+        {isSubmitting ? "Slanje..." : "Pošalji poruku"}
+      </button>
+      {stateMessage && (
+        <p className={`text-center text-sm font-semibold ${ok ? "text-sage" : "text-accent"}`}>{stateMessage}</p>
+      )}
+    </form>
+  );
+}

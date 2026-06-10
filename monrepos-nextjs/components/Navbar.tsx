@@ -1,110 +1,89 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FaBars, FaTimes } from "react-icons/fa";
+import Wordmark from "@/components/brand/Wordmark";
 
-const Navbar = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const links = [
+  { href: "/galerija", label: "Galerija" },
+  { href: "/cenovnik", label: "Cenovnik" },
+  { href: "/kontakt", label: "Kontakt" },
+];
+
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
-  const handleToggle = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const handleLinkClick = () => {
-    setIsExpanded(false);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
+  const isActive = (href: string) => pathname === href || pathname === href + "/";
 
   return (
-    <header className='sticky top-0 z-50 '>
-      <div className='relative'>
-        <nav className="rounded-b-xl flex flex-col lg:flex-row justify-between items-center max-w-[1240px] h-auto lg:h-24 mx-auto px-4 text-black bg-[#64b370ef] shadow-2xl ">
-          <div className="text-gray-800 lg:mx-10 mx-1 text-3xl lg:text-4xl LogoFont my-3">
+    <header className="sticky top-0 z-50 border-b border-line bg-parchment/85 backdrop-blur-md">
+      <nav className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5">
+        <Link
+          href="/"
+          onClick={() => setOpen(false)}
+          aria-label="Mon Repos - početna"
+          className="text-espresso"
+        >
+          <Wordmark className="text-[26px] leading-none" />
+        </Link>
+
+        {/* desktop */}
+        <div className="hidden items-center gap-9 lg:flex">
+          {links.map((l) => (
             <Link
-              href='/'
-              onClick={() => { handleLinkClick(); scrollToTop(); }}
+              key={l.href}
+              href={l.href}
+              className={`text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors hover:text-accent ${
+                isActive(l.href) ? "text-accent" : "text-espresso"
+              }`}
             >
-              Mon Repos
+              {l.label}
+            </Link>
+          ))}
+          <Link href="/kontakt" className="btn btn-primary text-[12px]">
+            Rezerviši
+          </Link>
+        </div>
+
+        {/* mobile toggle */}
+        <button
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Zatvori meni" : "Otvori meni"}
+          aria-expanded={open}
+          className="flex h-10 w-10 items-center justify-center text-xl text-espresso lg:hidden"
+        >
+          {open ? <FaTimes /> : <FaBars />}
+        </button>
+      </nav>
+
+      {/* mobile panel */}
+      {open && (
+        <div className="border-t border-line bg-cream lg:hidden">
+          <div className="mx-auto flex max-w-6xl flex-col px-5 py-2">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className={`border-b border-line py-3.5 text-sm font-semibold uppercase tracking-[0.14em] ${
+                  isActive(l.href) ? "text-accent" : "text-espresso"
+                }`}
+              >
+                {l.label}
+              </Link>
+            ))}
+            <Link
+              href="/kontakt"
+              onClick={() => setOpen(false)}
+              className="btn btn-primary mt-4 mb-2 justify-center"
+            >
+              Rezerviši boravak
             </Link>
           </div>
-
-          <div className="lg:hidden flex flex-col items-center ">
-            <button
-              onClick={handleToggle}
-              className="text-white text-xl focus:outline-none"
-            >
-              &#9776;
-            </button>
-            {isExpanded && (
-              <div className="sticky flex flex-col items-center w-full mt-2 text-center ">
-                <Link
-                  href='/galerija'
-                  onClick={() => { handleLinkClick(); scrollToTop(); }}
-                  className="text-gray-800 py-2 w-full hover:bg-gray-200"
-                >
-                  Galerija
-                </Link>
-                <Link
-                  href='/kontakt'
-                  onClick={() => { handleLinkClick(); scrollToTop(); }}
-                  className="text-gray-800 py-2 w-full hover:bg-gray-200"
-                >
-                  Kontakt
-                </Link>
-                <Link
-                  href='/cenovnik'
-                  onClick={() => { handleLinkClick(); scrollToTop(); }}
-                  className="text-gray-800 py-2 w-full hover:bg-gray-200"
-                >
-                  Cenovnik
-                </Link>
-              </div>
-            )}
-          </div>
-
-          <div className="hidden lg:flex flex-col lg:flex-row gap-10 pr-20 text-xl text-white font-semibold">
-            <Link
-              href='/galerija'
-              onClick={() => {scrollToTop();handleLinkClick();}}
-              className="group text-white transition-all duration-300 ease-in-out"
-            >
-              <span className="bg-left-bottom bg-gradient-to-r from-green-700 to-green-700 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
-                Galerija
-              </span>
-            </Link>
-
-            <Link
-              href='/kontakt'
-              onClick={() => {handleLinkClick();scrollToTop();}}
-              className="group text-white transition-all duration-300 ease-in-out"
-            >
-              <span className="bg-left-bottom bg-gradient-to-r from-green-700 to-green-700 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
-                Kontakt
-              </span>
-            </Link>
-
-            <Link
-              href='/cenovnik'
-              onClick={() => {scrollToTop();handleLinkClick();}}
-              className="group text-white transition-all duration-300 ease-in-out"
-            >
-              <span className="bg-left-bottom bg-gradient-to-r from-green-700 to-green-700 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
-                Cenovnik
-              </span>
-            </Link>
-          </div>
-        </nav>
-      </div>
+        </div>
+      )}
     </header>
   );
-};
-
-export default Navbar;
+}

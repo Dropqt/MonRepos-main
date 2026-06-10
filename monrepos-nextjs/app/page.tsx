@@ -1,13 +1,15 @@
-import LandingIntro from '@/components/LandingIntro';
-import Cards from '@/components/Cards';
-import GoogleReviews from '@/components/GoogleReviews';
+import Hero from "@/components/Hero";
+import Story from "@/components/Story";
+import RoomsPreview from "@/components/RoomsPreview";
+import CtaBand from "@/components/CtaBand";
 
 export default function Home() {
   return (
-    <div>
-      <LandingIntro />
-      <Cards />
-      <GoogleReviews />
-    </div>
+    <>
+      <Hero />
+      <Story />
+      <RoomsPreview />
+      <CtaBand />
+    </>
   );
 }

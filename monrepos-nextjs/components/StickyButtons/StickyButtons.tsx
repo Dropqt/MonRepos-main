@@ -1,28 +1,46 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { FaPhone, FaEnvelope } from 'react-icons/fa';
+import { useEffect, useState } from "react";
+import { FaPhone, FaEnvelope, FaArrowUp } from "react-icons/fa";
 
-const StickyButtons = () => {
-  const phoneNumber = '063/7792-177';
-  const emailAddress = 'danica.blagojevic@gmail.com';
+export default function StickyButtons() {
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 500);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const base =
+    "flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-transform duration-300 hover:-translate-y-1";
 
   return (
-    <div className="fixed bottom-10 right-5 flex flex-col items-end gap-8 z-40">
+    <div className="fixed bottom-6 right-5 z-40 flex flex-col items-center gap-3">
+      {showTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Na vrh stranice"
+          className={`${base} bg-espresso text-parchment`}
+        >
+          <FaArrowUp />
+        </button>
+      )}
       <a
-        href={`tel:${phoneNumber}`}
-        className="bg-gray-200/95 rounded-lg py-2 px-2 text-green-600 hover:text-green-900 transition-colors duration-300 cursor-pointer"
+        href="tel:0637792177"
+        aria-label="Pozovite nas"
+        className={`${base} bg-cream text-espresso ring-1 ring-line`}
       >
-        <FaPhone size={30}/>
+        <FaPhone />
       </a>
       <a
-        href={`mailto:${emailAddress}`}
-        className="bg-gray-200/95 rounded-lg py-2 px-2 text-green-600 hover:text-green-900 transition-colors duration-300 cursor-pointer"
+        href="mailto:danica.blagojevic@gmail.com"
+        aria-label="Pošaljite nam email"
+        className={`${base} bg-accent text-white`}
       >
-        <FaEnvelope size={30}/>
+        <FaEnvelope />
       </a>
     </div>
   );
-};
-
-export default StickyButtons;
+}

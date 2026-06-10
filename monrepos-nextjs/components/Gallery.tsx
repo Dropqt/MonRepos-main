@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { IoClose, IoChevronBack, IoChevronForward } from 'react-icons/io5';
+import { IoClose, IoChevronBack, IoChevronForward, IoExpand } from 'react-icons/io5';
 
 const images = [
   '/assets/slikeVile/04.jpg',
@@ -41,53 +41,33 @@ export default function Gallery() {
   const showNext = () => setCurrentIndex((prev) => (prev !== null ? (prev + 1) % images.length : 0));
   const showPrevious = () => setCurrentIndex((prev) => (prev !== null ? (prev - 1 + images.length) % images.length : 0));
 
-  // Minimum swipe distance (in px) to trigger navigation
   const minSwipeDistance = 50;
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
+  const onTouchMove = (e: React.TouchEvent) => setTouchEnd(e.targetTouches[0].clientX);
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      showNext();
-    } else if (isRightSwipe) {
-      showPrevious();
-    }
+    if (distance > minSwipeDistance) showNext();
+    else if (distance < -minSwipeDistance) showPrevious();
   };
 
-  // Handle keyboard navigation
   useEffect(() => {
     if (!isOpen) return;
-
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeModal();
       if (e.key === 'ArrowLeft') showPrevious();
       if (e.key === 'ArrowRight') showNext();
     };
-
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [isOpen, currentIndex]);
 
-  // Prevent body scroll when modal open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
@@ -95,91 +75,74 @@ export default function Gallery() {
 
   return (
     <>
-      {/* Gallery Grid */}
-      <div className="max-w-[1240px] mx-auto px-4 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="mx-auto max-w-6xl px-5 py-16">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {images.map((src, index) => (
-            <div
+            <button
               key={index}
               onClick={() => openModal(index)}
-              className="relative aspect-[4/3] overflow-hidden rounded-xl cursor-pointer group bg-gray-200"
+              className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-xl border border-line bg-sand"
+              aria-label={`Otvori fotografiju ${index + 1}`}
             >
               <img
                 src={src}
-                alt={`Villa photo ${index + 1}`}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                alt={`Vila Mon Repos - fotografija ${index + 1}`}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <svg className="w-12 h-12 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                </svg>
-              </div>
-            </div>
+              <span className="absolute inset-0 bg-espresso/0 transition-colors duration-300 group-hover:bg-espresso/30" />
+              <span className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <IoExpand className="h-9 w-9 text-parchment drop-shadow-lg" />
+              </span>
+            </button>
           ))}
         </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox */}
       {isOpen && currentIndex !== null && (
         <div
-          className="fixed inset-0 z-50 bg-black bg-opacity-95 flex items-center justify-center"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-espresso/95"
           onClick={closeModal}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
         >
-          {/* Main Image */}
-          <div className="relative w-full h-full flex items-center justify-center p-4">
+          <div className="relative flex h-full w-full items-center justify-center p-4">
             <img
               src={images[currentIndex]}
-              alt={`Villa photo ${currentIndex + 1}`}
-              className="max-w-full max-h-full object-contain rounded-lg"
+              alt={`Vila Mon Repos - fotografija ${currentIndex + 1}`}
+              className="max-h-full max-w-full rounded-lg object-contain shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             />
           </div>
 
-          {/* Close Button */}
           <button
             onClick={closeModal}
-            className="absolute top-4 right-4 p-3 text-white bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full transition-all hover:scale-110"
-            aria-label="Close"
+            className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-parchment/15 text-parchment transition-all hover:scale-110 hover:bg-parchment/25"
+            aria-label="Zatvori"
           >
-            <IoClose className="w-8 h-8" />
+            <IoClose className="h-7 w-7" />
           </button>
 
-          {/* Previous Button */}
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              showPrevious();
-            }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-4 text-white bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full transition-all hover:scale-110"
-            aria-label="Previous"
+            onClick={(e) => { e.stopPropagation(); showPrevious(); }}
+            className="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/15 text-parchment transition-all hover:scale-110 hover:bg-parchment/25"
+            aria-label="Prethodna"
           >
-            <IoChevronBack className="w-8 h-8" />
+            <IoChevronBack className="h-7 w-7" />
           </button>
 
-          {/* Next Button */}
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              showNext();
-            }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-4 text-white bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full transition-all hover:scale-110"
-            aria-label="Next"
+            onClick={(e) => { e.stopPropagation(); showNext(); }}
+            className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/15 text-parchment transition-all hover:scale-110 hover:bg-parchment/25"
+            aria-label="Sledeća"
           >
-            <IoChevronForward className="w-8 h-8" />
+            <IoChevronForward className="h-7 w-7" />
           </button>
 
-          {/* Counter */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 text-white bg-black bg-opacity-60 rounded-full text-sm">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full bg-espresso/70 px-4 py-2 text-sm text-parchment">
             {currentIndex + 1} / {images.length}
-          </div>
-
-          {/* Keyboard Hint */}
-          <div className="absolute top-6 left-6 px-3 py-2 text-white text-sm bg-black bg-opacity-50 rounded-lg hidden md:block">
-            ← → to navigate • ESC to close
           </div>
         </div>
       )}

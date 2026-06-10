@@ -1,100 +1,97 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ===========================================================================
+   MON REPOS - brand design tokens (Tailwind v4 @theme)
+   Palette + type sampled from the printed business card.
+   =========================================================================== */
+@theme {
+  --color-parchment: #EDE5D0;
+  --color-sand:      #E2D6B8;
+  --color-cream:     #F7F2E6;
+  --color-espresso:  #2A2118;
+  --color-cocoa:     #4A3B2C;
+  --color-accent:    #D23A2C;
+  --color-accent-deep:#B22E22;
+  --color-sage:      #6E7A5B;
+  --color-water:     #2F9BC9;
+  --color-line:      rgba(42, 33, 24, 0.16);
+
+  --font-display: var(--font-playfair), Georgia, serif;   /* wordmark + display */
+  --font-serif:   var(--font-cormorant), Georgia, serif;  /* headings */
+  --font-sans:    var(--font-montserrat), system-ui, sans-serif; /* body + labels */
+
+  --shadow-soft: 0 18px 40px -22px rgba(42, 33, 24, 0.55);
+  --shadow-sm:   0 8px 22px -16px rgba(42, 33, 24, 0.5);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-roboto), Arial, Helvetica, sans-serif;
+/* ---------- base ---------- */
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  background: var(--color-parchment);
+  color: var(--color-espresso);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* App container with background texture */
-.app-container {
-  position: relative;
+/* subtle aged-paper grain over everything */
+body::after{
+  content:"";
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  opacity: .045; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.app-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-image: url('/assets/other/bg-texture.jpg');
-  opacity: 0.2;
-  z-index: -1;
-}
+h1,h2,h3,h4{ font-family: var(--font-serif); font-weight: 600; line-height: 1.08; color: var(--color-espresso); }
 
-/* Font utility classes */
-.LogoFont {
-  font-family: var(--font-dancing-script), cursive;
-  font-weight: 700;
-}
+::selection{ background: rgba(210,58,44,.18); }
 
-.monserrat {
-  font-family: var(--font-montserrat), sans-serif;
-  font-weight: 500;
-}
+/* ---------- wordmark + hawk ---------- */
+.wordmark{ font-family: var(--font-display); font-weight: 900; line-height: .9; letter-spacing: .01em; display: inline-block; }
+.wm-line{ display: block; }
+.wm-o{ position: relative; display: inline-block; }
+.wm-hawk{ position: absolute; left: 50%; top: -.40em; width: .82em; height: .42em; transform: translateX(-50%); color: currentColor; }
 
-.roboto-light {
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
+/* ---------- eyebrow / lead / labels ---------- */
+.eyebrow{ font-family: var(--font-sans); font-size: 12px; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--color-accent); margin: 0 0 14px; }
+.lead{ font-family: var(--font-serif); font-style: italic; font-size: clamp(18px, 2.4vw, 22px); color: var(--color-cocoa); }
+.uplabel{ font-family: var(--font-sans); font-weight: 700; letter-spacing: .26em; text-transform: uppercase; }
 
-.roboto-light-italic {
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
+/* ---------- buttons ---------- */
+.btn{ font-family: var(--font-sans); font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-radius: 999px; padding: 13px 26px; border: 1.5px solid transparent; cursor: pointer; transition: .22s ease; display: inline-flex; align-items: center; gap: 9px; text-decoration: none; }
+.btn-primary{ background: var(--color-accent); color: #fff7ef; box-shadow: 0 10px 22px -12px rgba(210,58,44,.8); }
+.btn-primary:hover{ background: var(--color-accent-deep); transform: translateY(-2px); }
+.btn-secondary{ background: transparent; color: var(--color-espresso); border-color: var(--color-espresso); }
+.btn-secondary:hover{ background: var(--color-espresso); color: var(--color-parchment); }
+.btn-ghost{ background: transparent; color: var(--color-espresso); padding-inline: 0; border: 0; }
+.btn-light{ background: #fdf8ee; color: var(--color-espresso); }
+.btn-light:hover{ background: #fff; transform: translateY(-2px); }
 
-.roboto-regular {
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
+/* animated underline link */
+.anim-link{ font-family: var(--font-sans); font-weight: 600; color: var(--color-espresso); text-decoration: none; position: relative; display: inline-block; }
+.anim-link::after{ content:""; position: absolute; left: 0; bottom: -4px; height: 2px; width: 100%; background: var(--color-accent); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+.anim-link:hover::after{ transform: scaleX(1); }
 
-.roboto-regular-italic {
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
+/* ---------- divider with hawk ---------- */
+.divider{ display: flex; align-items: center; gap: 18px; }
+.divider::before,.divider::after{ content:""; flex: 1; height: 1px; background: var(--color-line); }
+.divider .dh{ width: 40px; height: 20px; color: var(--color-sage); flex: none; }
 
-.roboto-medium {
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
+/* ---------- framed photo (like the business card) ---------- */
+.frame{ background: var(--color-cream); padding: 12px; border-radius: 14px; border: 1px solid var(--color-line); box-shadow: var(--shadow-soft); }
+.frame img{ display: block; width: 100%; border-radius: 8px; object-fit: cover; }
 
-.roboto-medium-italic {
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
+/* ---------- cards & panels ---------- */
+.panel{ background: var(--color-cream); border: 1px solid var(--color-line); border-radius: 16px; box-shadow: var(--shadow-sm); }
 
-.roboto-bold {
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
+/* ---------- badge ---------- */
+.badge{ display: inline-flex; align-items: center; gap: 8px; background: var(--color-sage); color: #f6f5ee; font-family: var(--font-sans); font-weight: 700; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; }
 
-.roboto-bold-italic {
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
+/* keep keyframe utility for swiper/reveals */
+@keyframes fade-up{ from{ opacity:0; transform: translateY(14px);} to{ opacity:1; transform:none; } }
+.fade-up{ animation: fade-up .7s ease both; }
 
-.roboto-black {
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
-
-.roboto-black-italic {
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: 900;
-  font-style: italic;
-}
+/* Swiper pagination tint */
+.swiper-pagination-bullet{ background: var(--color-espresso) !important; }
+.swiper-pagination-bullet-active{ background: var(--color-accent) !important; }
