@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Wordmark from "@/components/brand/Wordmark";
+import Logo from "@/components/brand/Logo";
 import Hawk from "@/components/brand/Hawk";
 
 export default function Footer() {
@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-3">
           {/* brand */}
           <div>
-            <Wordmark stacked className="text-[40px] leading-[0.9] text-parchment" />
+            <Logo className="h-20 w-auto text-parchment" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-parchment/70">
               Porodični smeštaj sa domaćom hranom u srcu Sokobanje. Tradicija, mir i
               topao doček - od 1931.

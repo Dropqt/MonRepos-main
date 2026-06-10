@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Wordmark from "@/components/brand/Wordmark";
+import Logo from "@/components/brand/Logo";
 
 export default function Hero() {
   return (
@@ -13,10 +13,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-espresso/35 via-espresso/45 to-espresso/80" />
 
       <div className="relative z-10 px-5 py-24">
-        <Wordmark
-          stacked
-          className="text-[clamp(3.5rem,11vw,7rem)] leading-[0.88] text-[#fdf8ee] drop-shadow-[0_2px_20px_rgba(20,14,8,0.45)]"
-        />
+        <Logo className="mx-auto block h-[clamp(6.5rem,22vw,13rem)] w-auto text-[#fdf8ee] drop-shadow-[0_2px_20px_rgba(20,14,8,0.45)]" />
         <p className="mt-7 text-[11px] font-bold uppercase tracking-[0.38em] text-[#e7d6b2]">
           Est. 1931 · Sokobanja
         </p>

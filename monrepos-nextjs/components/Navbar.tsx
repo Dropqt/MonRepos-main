@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
-import Wordmark from "@/components/brand/Wordmark";
+import Logo from "@/components/brand/Logo";
 
 const links = [
   { href: "/galerija", label: "Galerija" },
@@ -26,7 +26,7 @@ export default function Navbar() {
           aria-label="Mon Repos - početna"
           className="text-espresso"
         >
-          <Wordmark className="text-[26px] leading-none" />
+          <Logo className="h-14 w-auto" />
         </Link>
 
         {/* desktop */}

@@ -1,27 +1,17 @@
-/**
- * Mon Repos hawk - traced/vectorized from the printed business card.
- * Placeholder until the designer's master SVG arrives (swap the <path> here only).
- * Fills with currentColor; the eye is a true hole (fill-rule evenodd).
- */
-type HawkProps = {
-  className?: string;
-  title?: string;
-};
+type HawkProps = { className?: string; title?: string };
 
+// Mon Repos hawk - the designer's vector (Glava export).
 export default function Hawk({ className, title = "Mon Repos soko" }: HawkProps) {
   return (
     <svg
-      viewBox="0 0 120 60"
+      viewBox="116.9 228.7 530.4 256.8"
       className={className}
+      fill="currentColor"
       role="img"
       aria-label={title}
-      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        fillRule="evenodd"
-        d="M66.1,7.5 C73.4,7.5 85.5,6.1 93.5,9.8 C101.5,13.5 110.2,24.8 113.9,29.7 C117.7,34.6 116.2,37.5 116.0,39.5 C115.8,41.5 114.2,42.0 112.8,41.5 C111.4,41.0 110.3,37.6 107.6,36.6 C104.9,35.6 102.0,33.6 96.6,35.5 C91.2,37.4 83.9,46.3 75.3,47.9 C66.7,49.5 56.1,44.3 45.0,45.3 C33.9,46.3 14.1,55.1 8.9,53.9 C3.8,52.6 10.5,43.6 14.1,37.8 C17.7,32.0 24.7,24.0 30.6,19.3 C36.5,14.6 43.7,11.8 49.6,9.8 C55.5,7.8 58.8,7.5 66.1,7.5 Z M71.8,19.2 a5.5,5.5 0 1,0 11.0,0 a5.5,5.5 0 1,0 -11.0,0 Z"
-      />
+      <path d="M623.05,354.7c-15.87-23.61-88.2-92.28-112.59-108.82-33.94-1.3-68.12-3.3-102.07-3.14-82.19,4.56-152.08,27.38-208.69,90.2-36.1,39.99-56.73,80.54-68.79,138.56,82.46-44.12,146.14-59.68,235.09-56.49,48.95,4.32,53.66,6.13,79.87,16.3,18.9-30.45,41.33-49.97,77.04-58.22,24.44-5.66,50.56-3.97,72.99,7.66,12.14,5.23,17.76,15.01,16.23,26.01.08,0,.16,0,.24-.04,17.99-3.89,26.2-25.42,17.25-41.53-1.89-3.42-4.16-6.88-6.56-10.45v-.04ZM444.61,321.15c-21.14-6.21-29.94-24.36-34.53-39.91,18.86,0,37.48-.04,56.26,0,3.22,0,6.44.12,9.55.51,10.92,1.41,15.6,13.63,9.7,22.94-10.41,16.46-28.36,20.15-40.98,16.46Z" />
     </svg>
   );
 }
