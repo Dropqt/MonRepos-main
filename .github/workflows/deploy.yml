@@ -1,0 +1,51 @@
+name: Build and deploy to cPanel
+
+# Deploys the static site to cPanel over FTP on every push to main.
+# Requires three repository secrets (Settings -> Secrets and variables -> Actions):
+#   FTP_SERVER    e.g. ftp.monrepossokobanja.com  (or the server hostname/IP)
+#   FTP_USERNAME  your FTP account username
+#   FTP_PASSWORD  your FTP account password
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # lets you run it manually from the Actions tab
+
+concurrency:
+  group: cpanel-deploy
+  cancel-in-progress: false # never interrupt an in-progress upload
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: monrepos-nextjs/package-lock.json
+
+      - name: Install dependencies
+        working-directory: monrepos-nextjs
+        run: npm ci
+
+      - name: Build static site (output -> monrepos-nextjs/out)
+        working-directory: monrepos-nextjs
+        run: npm run build
+
+      - name: Deploy out/ to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps # secure FTP; change to "ftp" only if your host has no FTPS
+          local-dir: ./monrepos-nextjs/out/
+          # The web root on the server. With the MAIN cPanel FTP account use
+          # "./public_html/". If you make a dedicated FTP account whose home is
+          # already the web root, use "./". Addon/subdomain docroots differ.
+          server-dir: ./public_html/
