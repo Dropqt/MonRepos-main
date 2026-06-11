@@ -86,7 +86,7 @@ const jsonLd = {
   telephone: ["+381 63 7792-177", "+381 63 631-292", "+381 18 884-760"],
   email: "danica.blagojevic@gmail.com",
   foundingDate: "1931",
-  priceRange: "3500 RSD",
+  priceRange: "3700 RSD",
   currenciesAccepted: "RSD",
   image: [
     "https://monrepossokobanja.com/og-image.jpg",

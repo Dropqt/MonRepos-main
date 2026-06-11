@@ -33,7 +33,7 @@ export default function CenovnikPage() {
             <div className="flex flex-col items-center justify-center bg-espresso p-10 text-center text-parchment">
               <p className="uplabel text-[11px] text-parchment/60">Puni pansion</p>
               <p className="mt-3 font-display text-6xl font-extrabold leading-none text-parchment">
-                3.500
+                3.700
                 <span className="ml-2 text-2xl font-normal text-parchment/70">din</span>
               </p>
               <p className="mt-3 text-sm text-parchment/70">doručak · ručak · večera</p>
@@ -41,7 +41,7 @@ export default function CenovnikPage() {
             <div className="flex flex-col justify-center p-10">
               <h2 className="text-3xl">Sve što vam treba</h2>
               <p className="mt-3 leading-relaxed text-cocoa">
-                U ovom periodu cena punog pansiona iznosi 3.500 din. Kontaktirajte nas
+                U ovom periodu cena punog pansiona iznosi 3.700 din. Kontaktirajte nas
                 radi dogovora i rezervacije termina.
               </p>
               <Link href="/kontakt" className="btn btn-primary mt-6 self-start">
