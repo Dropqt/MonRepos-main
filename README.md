@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vila Mon Repos - Sokobanja
 
-## Getting Started
+Sajt vile Mon Repos, porodičnog smeštaja sa domaćom hranom u Sokobanji (tradicija od 1931). Live na [monrepossokobanja.com](https://monrepossokobanja.com).
 
-First, run the development server:
+## Tehnologije
+
+- [Next.js 16](https://nextjs.org) (App Router, statički export)
+- [React 19](https://react.dev) + TypeScript
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [Swiper](https://swiperjs.com) za galerije slika
+- [EmailJS](https://www.emailjs.com) za kontakt formu
+- Google Analytics 4 preko `@next/third-parties`
+
+## Pokretanje lokalno
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Sajt je zatim dostupan na [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Projekat koristi `output: "export"`, pa build generiše čist statički sajt u `out/` folderu - nije potreban Node.js server za hosting.
 
-To learn more about Next.js, take a look at the following resources:
+## Struktura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+app/            # stranice (App Router): početna, /galerija, /cenovnik, /kontakt
+  layout.tsx    # globalni layout, metadata, JSON-LD, Google Analytics
+  sitemap.ts    # sitemap.xml
+  robots.ts     # robots.txt
+components/     # React komponente (Navbar, Footer, galerije, kontakt forma...)
+public/assets/  # slike i statički fajlovi
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
+Svaki push na `main` automatski pokreće GitHub Actions workflow ([.github/workflows/deploy.yml](.github/workflows/deploy.yml)) koji builduje sajt i šalje sadržaj `out/` foldera na cPanel hosting preko FTPS-a.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## SEO i analitika
+
+- Metadata, canonical URL-ovi i Open Graph tagovi po stranici
+- Strukturirani podaci (`LodgingBusiness` JSON-LD) za Google rich results
+- GA4 sa praćenjem klikova na telefon/email i slanja kontakt forme
