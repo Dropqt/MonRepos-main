@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,6 +18,7 @@ export default function ContactForm() {
       .sendForm("gmail", "template_w511hpp", form, "gbYozUxtsoCwsPsHo")
       .then(
         () => {
+          sendGAEvent("event", "contact_form_submit", { status: "success" });
           setOk(true);
           setStateMessage("Poruka je poslata! Javićemo vam se uskoro.");
           setIsSubmitting(false);
@@ -24,6 +26,7 @@ export default function ContactForm() {
           setTimeout(() => setStateMessage(null), 6000);
         },
         () => {
+          sendGAEvent("event", "contact_form_submit", { status: "error" });
           setOk(false);
           setStateMessage("Došlo je do greške. Pokušajte ponovo ili nas pozovite.");
           setIsSubmitting(false);

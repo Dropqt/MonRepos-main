@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Cormorant_Garamond, Montserrat } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StickyButtons from "@/components/StickyButtons/StickyButtons";
+import AnalyticsListener from "@/components/AnalyticsListener";
 
 const playfair = Playfair_Display({
   subsets: ["latin", "latin-ext"],
@@ -122,7 +124,9 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <StickyButtons />
+        <AnalyticsListener />
       </body>
+      <GoogleAnalytics gaId="G-YDXJRZLJ3F" />
     </html>
   );
 }
