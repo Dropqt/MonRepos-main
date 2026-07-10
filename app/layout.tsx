@@ -50,6 +50,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
+  verification: { google: "qSdjVFC7G6CHbXZvmBB0IBXSgKuay6piL0AAHM3FtVM" },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
