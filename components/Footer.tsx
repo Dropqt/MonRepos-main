@@ -92,6 +92,17 @@ export default function Footer() {
         <p className="mt-6 text-center text-xs tracking-wide text-parchment/55">
           © {year} Mon Repos · Sokobanja · Sva prava zadržana
         </p>
+        <p className="mt-2 text-center text-xs tracking-wide text-parchment/45">
+          Made by:{" "}
+          <a
+            className="transition-colors hover:text-accent"
+            href="https://dropqt.rs"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            dropqt.rs
+          </a>
+        </p>
       </div>
     </footer>
   );
